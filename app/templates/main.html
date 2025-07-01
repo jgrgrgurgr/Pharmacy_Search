@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>약국 검색</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="/static/css/style.css" />
+</head>
+<body>
+    <h1>전국 약국 검색</h1>
+    <form method="get" action="/pharmacies/">
+        <input type="text" name="location" placeholder="위치 입력">
+        <input type="text" name="medicine" placeholder="의약품 이름">
+        <button type="submit">검색</button>
+    </form>
+    <div id="map" style="height: 400px;"></div>
+    <ul>
+        {% for pharmacy in pharmacies %}
+            <li>
+                {{ pharmacy.name }} - {{ pharmacy.address }}<br>
+                전화: {{ pharmacy.phone or '없음' }}<br>
+                운영 시간: 
+                {% for day, hours in pharmacy.operating_hours.items() %}
+                    {{ day }}: {{ hours.start }}-{{ hours.close }}
+                    {% if not loop.last %}, {% endif %}
+                {% endfor %}
+            </li>
+        {% endfor %}
+    </ul>
+    <script>
+        var map = L.map('map').setView([37.5665, 126.9780], 13);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+        // {% for pharmacy in pharmacies %}
+        //     {% if pharmacy.latitude and pharmacy.longitude %}
+        //         L.marker([{{ pharmacy.latitude }}, {{ pharmacy.longitude }}])
+        //             .addTo(map)
+        //             .bindPopup('{{ pharmacy.name }}<br>{{ pharmacy.address }}<br>전화: {{ pharmacy.phone or "없음" }}');
+        //     {% endif %}
+        // {% endfor %}
+    </script>
+</body>
+</html>
