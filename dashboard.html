@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Pharmacy Monitoring System</title>
+    <link rel="stylesheet" href="static/css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <i class="fas fa-pills"></i>
+                <span>PharmaCare Monitor</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="/" class="nav-link">Home</a></li>
+                <li><a href="/dashboard" class="nav-link active">Dashboard</a></li>
+                <li><a href="/pharmacies" class="nav-link">Pharmacies</a></li>
+                <li><a href="/inventory" class="nav-link">Inventory</a></li>
+                <li><a href="/feedback" class="nav-link">Feedback</a></li>
+                <li><a href="#" class="nav-link" id="loginBtn">Login</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="dashboard">
+            <div class="dashboard-header">
+                <h1>Quality Monitoring Dashboard</h1>
+                <div class="dashboard-filters">
+                    <select id="timeFilter">
+                        <option value="7">Last 7 days</option>
+                        <option value="30">Last 30 days</option>
+                        <option value="90">Last 90 days</option>
+                    </select>
+                    <select id="regionFilter">
+                        <option value="">All Regions</option>
+                        <option value="north">North</option>
+                        <option value="south">South</option>
+                        <option value="east">East</option>
+                        <option value="west">West</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="dashboard-grid">
+                <div class="dashboard-card">
+                    <h3>Quality Score Overview</h3>
+                    <canvas id="qualityChart"></canvas>
+                </div>
+                
+                <div class="dashboard-card">
+                    <h3>Recent Feedback</h3>
+                    <div id="recentFeedback" class="feedback-list">
+                        <!-- Feedback items will be loaded here -->
+                    </div>
+                </div>
+                
+                <div class="dashboard-card">
+                    <h3>Low Stock Alerts</h3>
+                    <div id="lowStockAlerts" class="alert-list">
+                        <!-- Low stock alerts will be loaded here -->
+                    </div>
+                </div>
+                
+                <div class="dashboard-card">
+                    <h3>Top Performing Pharmacies</h3>
+                    <div id="topPharmacies" class="pharmacy-list">
+                        <!-- Top pharmacies will be loaded here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <p>&copy; 2024 Pharmacy Service Quality Monitoring System. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Login</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Login</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="static/js/main.js"></script>
+    <script src="static/js/dashboard.js"></script>
+</body>
+</html>

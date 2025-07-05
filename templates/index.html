@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Pharmacy Monitoring System{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div class="hero-container">
+        <div class="hero-content">
+            <h1>Pharmacy Service Quality Monitoring</h1>
+            <p>Ensuring excellence in pharmaceutical care through comprehensive monitoring and quality assessment.</p>
+            <div class="hero-buttons">
+                <a href="/dashboard" class="btn btn-primary">View Dashboard</a>
+                <a href="/pharmacies" class="btn btn-secondary">Browse Pharmacies</a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <i class="fas fa-hospital-alt"></i>
+        </div>
+    </div>
+</section>
+
+<section class="features">
+    <div class="container">
+        <h2>Key Features</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <i class="fas fa-chart-line"></i>
+                <h3>Quality Monitoring</h3>
+                <p>Real-time tracking of pharmacy service quality metrics and performance indicators.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-boxes"></i>
+                <h3>Inventory Management</h3>
+                <p>Comprehensive inventory tracking with automated alerts for low stock and expiry dates.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-comments"></i>
+                <h3>Customer Feedback</h3>
+                <p>Collect and analyze customer feedback to improve service quality and satisfaction.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-map-marker-alt"></i>
+                <h3>Location Tracking</h3>
+                <p>Geographic mapping of pharmacies with location-based quality assessments.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="stats">
+    <div class="container">
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h3 id="totalPharmacies">0</h3>
+                <p>Registered Pharmacies</p>
+            </div>
+            <div class="stat-card">
+                <h3 id="avgQualityScore">0.0</h3>
+                <p>Average Quality Score</p>
+            </div>
+            <div class="stat-card">
+                <h3 id="totalFeedback">0</h3>
+                <p>Customer Reviews</p>
+            </div>
+            <div class="stat-card">
+                <h3 id="activeInventory">0</h3>
+                <p>Active Inventory Items</p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="/static/js/home.js"></script>
+{% endblock %}

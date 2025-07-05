@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+
+{% block title %}Feedback - Pharmacy Monitoring System{% endblock %}
+
+{% block content %}
+<div class="feedback-page">
+    <div class="page-header">
+        <h1>Customer Feedback</h1>
+        <button class="btn btn-primary" id="addFeedbackBtn">
+            <i class="fas fa-plus"></i> Add Feedback
+        </button>
+    </div>
+
+    <div class="feedback-filters">
+        <select id="feedbackPharmacyFilter">
+            <option value="">All Pharmacies</option>
+        </select>
+        <select id="feedbackTypeFilter">
+            <option value="">All Types</option>
+            <option value="service_quality">Service Quality</option>
+            <option value="product_quality">Product Quality</option>
+            <option value="staff_behavior">Staff Behavior</option>
+            <option value="cleanliness">Cleanliness</option>
+            <option value="waiting_time">Waiting Time</option>
+        </select>
+        <select id="ratingFilter">
+            <option value="">All Ratings</option>
+            <option value="5">5 Stars</option>
+            <option value="4">4 Stars</option>
+            <option value="3">3 Stars</option>
+            <option value="2">2 Stars</option>
+            <option value="1">1 Star</option>
+        </select>
+    </div>
+
+    <div class="feedback-grid" id="feedbackGrid">
+        <!-- Feedback cards will be loaded here -->
+    </div>
+</div>
+
+<!-- Add Feedback Modal -->
+<div id="feedbackModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Submit Feedback</h2>
+        <form id="feedbackForm">
+            <div class="form-group">
+                <label for="feedbackPharmacy">Pharmacy:</label>
+                <select id="feedbackPharmacy" name="pharmacy_id" required>
+                    <option value="">Select Pharmacy</option>
+                </select>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="customerName">Your Name:</label>
+                    <input type="text" id="customerName" name="customer_name" required>
+                </div>
+                <div class="form-group">
+                    <label for="customerEmail">Your Email:</label>
+                    <input type="email" id="customerEmail" name="customer_email" required>
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="feedbackType">Feedback Type:</label>
+                    <select id="feedbackType" name="feedback_type" required>
+                        <option value="">Select Type</option>
+                        <option value="service_quality">Service Quality</option>
+                        <option value="product_quality">Product Quality</option>
+                        <option value="staff_behavior">Staff Behavior</option>
+                        <option value="cleanliness">Cleanliness</option>
+                        <option value="waiting_time">Waiting Time</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="rating">Rating:</label>
+                    <div class="rating-input">
+                        <input type="range" id="rating" name="rating" min="1" max="5" value="5" required>
+                        <span id="ratingValue">5</span> stars
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="comments">Comments:</label>
+                <textarea id="comments" name="comments" rows="4" placeholder="Share your experience..."></textarea>
+            </div>
+            
+            <div class="form-actions">
+                <button type="button" class="btn btn-secondary" id="cancelFeedbackBtn">Cancel</button>
+                <button type="submit" class="btn btn-primary">Submit Feedback</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="/static/js/feedback.js"></script>
+{% endblock %}

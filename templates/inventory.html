@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+
+{% block title %}Inventory - Pharmacy Monitoring System{% endblock %}
+
+{% block content %}
+<div class="inventory-page">
+    <div class="page-header">
+        <h1>Inventory Management</h1>
+        <button class="btn btn-primary" id="addInventoryBtn">
+            <i class="fas fa-plus"></i> Add Item
+        </button>
+    </div>
+
+    <div class="inventory-filters">
+        <select id="pharmacyFilter">
+            <option value="">All Pharmacies</option>
+        </select>
+        <select id="stockFilter">
+            <option value="">All Items</option>
+            <option value="low">Low Stock</option>
+            <option value="expired">Expired</option>
+            <option value="expiring">Expiring Soon</option>
+        </select>
+        <input type="text" id="searchInventory" placeholder="Search medicines...">
+    </div>
+
+    <div class="inventory-table-container">
+        <table class="inventory-table" id="inventoryTable">
+            <thead>
+                <tr>
+                    <th>Medicine</th>
+                    <th>Pharmacy</th>
+                    <th>Quantity</th>
+                    <th>Reorder Level</th>
+                    <th>Unit Cost</th>
+                    <th>Expiry Date</th>
+                    <th>Batch Number</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Inventory items will be loaded here -->
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Add/Edit Inventory Modal -->
+<div id="inventoryModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2 id="inventoryModalTitle">Add Inventory Item</h2>
+        <form id="inventoryForm">
+            <div class="form-group">
+                <label for="inventoryPharmacy">Pharmacy:</label>
+                <select id="inventoryPharmacy" name="pharmacy_id" required>
+                    <option value="">Select Pharmacy</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="inventoryMedicine">Medicine:</label>
+                <select id="inventoryMedicine" name="medicine_id" required>
+                    <option value="">Select Medicine</option>
+                </select>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="quantity">Quantity:</label>
+                    <input type="number" id="quantity" name="quantity" min="0" required>
+                </div>
+                <div class="form-group">
+                    <label for="reorderLevel">Reorder Level:</label>
+                    <input type="number" id="reorderLevel" name="reorder_level" min="0" value="10" required>
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="unitCost">Unit Cost:</label>
+                    <input type="number" id="unitCost" name="unit_cost" step="0.01" min="0" required>
+                </div>
+                <div class="form-group">
+                    <label for="expiryDate">Expiry Date:</label>
+                    <input type="date" id="expiryDate" name="expiry_date" required>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="batchNumber">Batch Number:</label>
+                <input type="text" id="batchNumber" name="batch_number" required>
+            </div>
+            
+            <div class="form-actions">
+                <button type="button" class="btn btn-secondary" id="cancelInventoryBtn">Cancel</button>
+                <button type="submit" class="btn btn-primary">Save Item</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="/static/js/inventory.js"></script>
+{% endblock %}

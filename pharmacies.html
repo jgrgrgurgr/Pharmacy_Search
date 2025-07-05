@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pharmacies - Pharmacy Monitoring System</title>
+    <link rel="stylesheet" href="static/css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <i class="fas fa-pills"></i>
+                <span>PharmaCare Monitor</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="/" class="nav-link">Home</a></li>
+                <li><a href="/dashboard" class="nav-link">Dashboard</a></li>
+                <li><a href="/pharmacies" class="nav-link active">Pharmacies</a></li>
+                <li><a href="/inventory" class="nav-link">Inventory</a></li>
+                <li><a href="/feedback" class="nav-link">Feedback</a></li>
+                <li><a href="#" class="nav-link" id="loginBtn">Login</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="pharmacies-page">
+            <div class="page-header">
+                <h1>Pharmacy Directory</h1>
+                <button class="btn btn-primary" id="addPharmacyBtn">
+                    <i class="fas fa-plus"></i> Add Pharmacy
+                </button>
+            </div>
+
+            <div class="filters-section">
+                <div class="search-bar">
+                    <input type="text" id="searchInput" placeholder="Search pharmacies...">
+                    <i class="fas fa-search"></i>
+                </div>
+                <div class="filter-controls">
+                    <select id="cityFilter">
+                        <option value="">All Cities</option>
+                    </select>
+                    <select id="stateFilter">
+                        <option value="">All States</option>
+                    </select>
+                    <select id="sortBy">
+                        <option value="name">Sort by Name</option>
+                        <option value="quality_score">Sort by Quality Score</option>
+                        <option value="created_at">Sort by Date Added</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="pharmacies-grid" id="pharmaciesGrid">
+                <!-- Pharmacy cards will be loaded here -->
+            </div>
+
+            <div class="pagination" id="pagination">
+                <!-- Pagination controls will be loaded here -->
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <p>&copy; 2024 Pharmacy Service Quality Monitoring System. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Login</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Login</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add/Edit Pharmacy Modal -->
+    <div id="pharmacyModal" class="modal">
+        <div class="modal-content large">
+            <span class="close">&times;</span>
+            <h2 id="modalTitle">Add New Pharmacy</h2>
+            <form id="pharmacyForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="pharmacyName">Pharmacy Name:</label>
+                        <input type="text" id="pharmacyName" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="licenseNumber">License Number:</label>
+                        <input type="text" id="licenseNumber" name="license_number" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="address">Address:</label>
+                    <textarea id="address" name="address" required></textarea>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="city">City:</label>
+                        <input type="text" id="city" name="city" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="state">State:</label>
+                        <input type="text" id="state" name="state" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="zipCode">ZIP Code:</label>
+                        <input type="text" id="zipCode" name="zip_code" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="phone">Phone:</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="ownerName">Owner Name:</label>
+                    <input type="text" id="ownerName" name="owner_name" required>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" id="cancelBtn">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Pharmacy</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="static/js/main.js"></script>
+    <script src="static/js/pharmacies.js"></script>
+</body>
+</html>
